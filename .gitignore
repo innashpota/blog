@@ -6,5 +6,6 @@
 blog.iml
 .idea/
 build/
+target/
 
 /out/
