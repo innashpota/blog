@@ -8,7 +8,7 @@
 <h3>Show posts information</h3>
 <p></p>
 <ul>
-    <li><a href="postInfo">Show posts information</a></li>
+    <li><a href = "posts">Show posts information</a></li>
 </ul>
 </body>
 </html>

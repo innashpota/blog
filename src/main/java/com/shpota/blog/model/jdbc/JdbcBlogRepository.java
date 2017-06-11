@@ -33,7 +33,7 @@ public class JdbcBlogRepository implements BlogRepository {
     private static final String SQL_SELECT_ALL_POSTS =
             "SELECT * " +
                     "FROM posts " +
-                    "ORDER BY post_id;";
+                    "ORDER BY post_id DESC;";
     private final DataSource dataSource;
 
     public JdbcBlogRepository(DataSource dataSource) {
