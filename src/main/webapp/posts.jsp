@@ -5,6 +5,7 @@
 <head>
     <title>All posts</title>
 </head>
+<body>
 <h2 align="center">Post from Postgresql Database</h2>
 <table border="1" cellspacing="0" cellpadding="2" align="center">
     <tr>
@@ -15,7 +16,7 @@
     <c:forEach items="${posts}" var="post" varStatus="loop">
         <tr>
             <td>${post.postedDate}</td>
-            <td><a href="post/${loop.index}"> ${post.title}</a></td>
+            <td><a href="posts/${loop.index}"> ${post.title}</a></td>
         </tr>
     </c:forEach>
 </table>
