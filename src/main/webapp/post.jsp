@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2 align="center"><c:out value="${post.title}"/></h2>
-    <h4 align="center"><c:out value="${post.postedDate}"/></h4>
+    <h4 align="center"><c:out value="${DATE_FORMATTER.format(post.postedDate)}"/></h4>
     <p>
         <c:out value="${post.postedText}"/>
     </p>

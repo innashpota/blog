@@ -15,10 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "BlogController", urlPatterns = {"/", "/posts/*"})
 public class BlogController extends HttpServlet {
+    public final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
+    public final static String MESSAGE = "404 Page Not Found.";
     private final static Logger LOGGER = Logger.getLogger(BlogController.class);
     private DataSource dataSource;
 
@@ -44,24 +48,27 @@ public class BlogController extends HttpServlet {
         if ("/".equals(uri)) {
             resp.sendRedirect("/posts");
         }
-        List<Post> posts = getAllPosts();
         if ("/posts".equals(uri)) {
+            List<Post> posts = getAllPosts();
             req.setAttribute("posts", posts);
+            req.setAttribute("DATE_FORMATTER", DATE_FORMATTER);
             req.getRequestDispatcher("/posts.jsp").forward(req, resp);
         }
         if(pathInfo != null) {
-            String positionOnList = pathInfo.substring(1);
-            try {
-                int position = Integer.parseInt(positionOnList);
-                if (position < 0 || position > posts.size()) {
-                    getError404(req, resp);
-                } else {
-                    Post post = posts.get(position);
+            String postIdOnList = pathInfo.substring(1);
+            Pattern pattern = Pattern.compile(".*[^0-9].*");
+            if(!pattern.matcher(postIdOnList).matches()) {
+                int postId = Integer.parseInt(postIdOnList);
+                Post post = getPost(postId);
+                if (post != null) {
                     req.setAttribute("post", post);
+                    req.setAttribute("DATE_FORMATTER", DATE_FORMATTER);
                     req.getRequestDispatcher("/post.jsp").forward(req, resp);
+                } else {
+                    redirectError(req, resp, MESSAGE);
                 }
-            } catch (NumberFormatException ignored) {
-                getError404(req, resp);
+            } else {
+                redirectError(req, resp, MESSAGE);
             }
         }
     }
@@ -71,7 +78,13 @@ public class BlogController extends HttpServlet {
         return repository.getAllPost();
     }
 
-    private void getError404(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/error404.jsp").forward(req, resp);
+    private Post getPost(int postId) {
+        BlogRepository repository = new JdbcBlogRepository(dataSource);
+        return repository.getPost(postId);
+    }
+
+    private void redirectError(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
+        req.setAttribute("message", message);
+        req.getRequestDispatcher("/error.jsp").forward(req, resp);
     }
 }
