@@ -3,10 +3,11 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Error page</title>
+    <title>Error</title>
 </head>
 <body>
-    <h1><c:out value="${message}"/></h1>
+    <h1>Page Not Found</h1>
+    <h3><c:out value="${message}"/></h3>
     <a href="" onclick="history.back()">Back to Previous Page</a>
 </body>
 </html>

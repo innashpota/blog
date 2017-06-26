@@ -17,12 +17,10 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @WebServlet(name = "BlogController", urlPatterns = {"/", "/posts/*"})
 public class BlogController extends HttpServlet {
     public final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
-    public final static String MESSAGE = "404 Page Not Found.";
     private final static Logger LOGGER = Logger.getLogger(BlogController.class);
     private DataSource dataSource;
 
@@ -55,20 +53,19 @@ public class BlogController extends HttpServlet {
             req.getRequestDispatcher("/posts.jsp").forward(req, resp);
         }
         if(pathInfo != null) {
-            String postIdOnList = pathInfo.substring(1);
-            Pattern pattern = Pattern.compile(".*[^0-9].*");
-            if(!pattern.matcher(postIdOnList).matches()) {
-                int postId = Integer.parseInt(postIdOnList);
+            String stringPostId = pathInfo.substring(1);
+            if(stringPostId.matches(".*[0-9]")) {
+                int postId = Integer.parseInt(stringPostId);
                 Post post = getPost(postId);
                 if (post != null) {
                     req.setAttribute("post", post);
                     req.setAttribute("DATE_FORMATTER", DATE_FORMATTER);
                     req.getRequestDispatcher("/post.jsp").forward(req, resp);
                 } else {
-                    redirectError(req, resp, MESSAGE);
+                    redirectToErrorPage(req, resp, "Post with this id does not exist.");
                 }
             } else {
-                redirectError(req, resp, MESSAGE);
+                redirectToErrorPage(req, resp, "You have entered an incorrect post id.");
             }
         }
     }
@@ -83,7 +80,7 @@ public class BlogController extends HttpServlet {
         return repository.getPost(postId);
     }
 
-    private void redirectError(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
+    private void redirectToErrorPage(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
         req.setAttribute("message", message);
         req.getRequestDispatcher("/error.jsp").forward(req, resp);
     }
