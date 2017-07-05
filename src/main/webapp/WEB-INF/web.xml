@@ -8,7 +8,7 @@
     </display-name>
 
     <resource-ref>
-        <description>postgreSQL Datasource</description>
+        <message>postgreSQL Datasource</message>
         <res-ref-name>jdbc/postgres</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>

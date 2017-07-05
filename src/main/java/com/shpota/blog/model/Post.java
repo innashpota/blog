@@ -16,7 +16,7 @@ public class Post {
         this.postId = postId;
     }
 
-    public Post (String title, OffsetDateTime postedDate, String postedText) {
+    public Post(String title, OffsetDateTime postedDate, String postedText) {
         if (title == null || postedDate == null || postedText == null) {
             throw new IllegalArgumentException("Title, date and text must not be null.");
         }
