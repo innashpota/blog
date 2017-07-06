@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet(name = "BlogController", urlPatterns = {"", "/posts/*"})
+@WebServlet(name = "BlogController", urlPatterns = {"", "/posts/*", "/error"})
 public class BlogController extends HttpServlet {
     public final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
     private final static Logger LOGGER = Logger.getLogger(BlogController.class);
@@ -43,7 +43,7 @@ public class BlogController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LOGGER.info("doGet method has been called");
-        Strategy strategy = requestHandler.jspName(request);
+        Strategy strategy = requestHandler.getStrategy(request);
         strategy.handle(request, response);
     }
 }

@@ -23,7 +23,7 @@ public class RequestHandler {
         return new RequestHandler(strategies);
     }
 
-    public Strategy jspName(HttpServletRequest request) throws IOException {
+    public Strategy getStrategy(HttpServletRequest request) throws IOException {
         String uri = request.getRequestURI();
         if ("/".equals(uri)) {
             return strategies.get(RedirectPostsStrategy.class);
