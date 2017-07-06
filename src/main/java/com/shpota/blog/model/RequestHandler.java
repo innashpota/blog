@@ -34,12 +34,9 @@ public class RequestHandler {
         if ("/error".equals(uri)) {
             return strategies.get(ErrorStrategy.class);
         }
-
         if (uri.matches("\\/posts\\/.*[0-9]")) {
             return strategies.get(PostStrategy.class);
-        } else {
-            request.setAttribute("message", "You have entered an incorrect post id.");
-            return strategies.get(ErrorStrategy.class);
         }
+        return strategies.get(ErrorStrategy.class);
     }
 }

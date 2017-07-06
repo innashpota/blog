@@ -16,11 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "BlogController", urlPatterns = {"", "/posts/*", "/error"})
 public class BlogController extends HttpServlet {
-    public final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
     private final static Logger LOGGER = Logger.getLogger(BlogController.class);
     private RequestHandler requestHandler;
 

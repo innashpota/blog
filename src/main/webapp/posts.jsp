@@ -16,7 +16,7 @@
 
     <c:forEach items="${posts}" var="post">
         <tr>
-            <td>${DATE_FORMATTER.format(post.postedDate)}</td>
+            <td>${formatter.format(post.postedDate)}</td>
             <td><a href="posts/${post.postId}"> ${post.title}</a></td>
         </tr>
     </c:forEach>

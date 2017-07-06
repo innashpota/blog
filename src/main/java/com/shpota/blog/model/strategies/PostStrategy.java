@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.shpota.blog.controller.BlogController.DATE_FORMATTER;
-
 public class PostStrategy extends Strategy {
     public PostStrategy(BlogRepository repository) {
         super(repository);
@@ -23,7 +21,7 @@ public class PostStrategy extends Strategy {
         Post post = repository.getPost(postId);
         if (post != null) {
             request.setAttribute("post", post);
-            request.setAttribute("DATE_FORMATTER", DATE_FORMATTER);
+            request.setAttribute("formatter", DATE_FORMATTER);
             request.getRequestDispatcher("/post.jsp").forward(request, response);
         } else {
             request.setAttribute("message", "Post with this id does not exist.");
