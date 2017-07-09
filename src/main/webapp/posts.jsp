@@ -21,5 +21,11 @@
         </tr>
     </c:forEach>
 </table>
+<br/>
+<form align="center">
+    <form action="/posts/" method="get">
+        <input type="submit" name="create" value="Create new post" />
+    </form>
+</form>
 </body>
 </html>

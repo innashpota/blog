@@ -13,7 +13,6 @@
 </p>
 <form align="center">
     <form action="/posts/" method="get">
-        <input type="submit" name="create" value="Create new post" />
         <input type="submit" name="edit" value="Edit" />
         <input type="submit" name="remove" value="Remove" />
     </form>

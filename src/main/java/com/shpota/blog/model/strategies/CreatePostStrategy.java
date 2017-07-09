@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CreateNewPostStrategy extends Strategy{
-    public CreateNewPostStrategy(BlogRepository repository) {
+public class CreatePostStrategy extends Strategy{
+    public CreatePostStrategy(BlogRepository repository) {
         super(repository);
     }
 

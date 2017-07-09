@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
-public class AddStrategy extends Strategy{
-    public AddStrategy(BlogRepository repository) {
+public class AddPostStrategy extends Strategy {
+    public AddPostStrategy(BlogRepository repository) {
         super(repository);
     }
 
