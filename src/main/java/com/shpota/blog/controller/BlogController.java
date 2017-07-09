@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 
-@WebServlet(name = "BlogController", urlPatterns = {"", "/posts/*", "/error"})
+@WebServlet(name = "BlogController", urlPatterns = {"", "/posts/*", "/error", "/create"})
 public class BlogController extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(BlogController.class);
     private RequestHandler requestHandler;
@@ -40,7 +40,16 @@ public class BlogController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        LOGGER.info("doGet method has been called");
+        processRequest(request, response, "doGet method has been called");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response, "doPost method has been called");
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response, String message) throws IOException, ServletException {
+        LOGGER.info(message);
         Strategy strategy = requestHandler.getStrategy(request);
         strategy.handle(request, response);
     }

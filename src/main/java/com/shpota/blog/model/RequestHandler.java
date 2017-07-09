@@ -16,26 +16,39 @@ public class RequestHandler {
 
     public static RequestHandler construct(BlogRepository repository) {
         Map<Class<? extends Strategy>, Strategy> strategies = new HashMap<>();
-        strategies.put(RedirectPostsStrategy.class, new RedirectPostsStrategy(repository));
+        strategies.put(RedirectAllPostsStrategy.class, new RedirectAllPostsStrategy(repository));
         strategies.put(AllPostsStrategy.class, new AllPostsStrategy(repository));
         strategies.put(PostStrategy.class, new PostStrategy(repository));
         strategies.put(ErrorStrategy.class, new ErrorStrategy(repository));
+        strategies.put(RedirectCreatePostStrategy.class, new RedirectCreatePostStrategy(repository));
+        strategies.put(CreatePostStrategy.class, new CreatePostStrategy(repository));
+        strategies.put(AddPostStrategy.class, new AddPostStrategy(repository));
         return new RequestHandler(strategies);
     }
 
     public Strategy getStrategy(HttpServletRequest request) throws IOException {
         String uri = request.getRequestURI();
         if ("/".equals(uri)) {
-            return strategies.get(RedirectPostsStrategy.class);
+            return strategies.get(RedirectAllPostsStrategy.class);
         }
         if ("/posts".equals(uri)) {
-            return strategies.get(AllPostsStrategy.class);
+            if ("GET".equals(request.getMethod())) {
+                if (request.getParameter("create") != null) {
+                    return strategies.get(RedirectCreatePostStrategy.class);
+                }
+                return strategies.get(AllPostsStrategy.class);
+            } else if ("POST".equals(request.getMethod())) {
+                return strategies.get(AddPostStrategy.class);
+            }
         }
         if ("/error".equals(uri)) {
             return strategies.get(ErrorStrategy.class);
         }
         if (uri.matches("\\/posts\\/.*[0-9]")) {
             return strategies.get(PostStrategy.class);
+        }
+        if ("/posts/create".equals(uri)) {
+            return strategies.get(CreatePostStrategy.class);
         }
         return strategies.get(ErrorStrategy.class);
     }

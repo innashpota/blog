@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class RedirectPostsStrategy extends Strategy {
-    public RedirectPostsStrategy(BlogRepository repository) {
+public class RedirectAllPostsStrategy extends Strategy {
+    public RedirectAllPostsStrategy(BlogRepository repository) {
         super(repository);
     }
 
