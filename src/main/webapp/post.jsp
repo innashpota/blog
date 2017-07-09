@@ -11,11 +11,9 @@
 <p>
     <c:out value="${post.postedText}"/>
 </p>
-<form align="center">
-    <form action="/posts/" method="get">
-        <input type="submit" name="edit" value="Edit" />
-        <input type="submit" name="remove" value="Remove" />
-    </form>
+<form align="center" action="/posts/" method="get">
+    <input type="submit" name="edit" value="Edit"/>
+    <input type="submit" name="remove" value="Remove"/>
 </form>
 </body>
 </html>
