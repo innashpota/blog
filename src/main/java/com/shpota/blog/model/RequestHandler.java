@@ -20,6 +20,9 @@ public class RequestHandler {
         strategies.put(AllPostsStrategy.class, new AllPostsStrategy(repository));
         strategies.put(PostStrategy.class, new PostStrategy(repository));
         strategies.put(ErrorStrategy.class, new ErrorStrategy(repository));
+        strategies.put(RedirectCreateStrategy.class, new RedirectCreateStrategy(repository));
+        strategies.put(CreateNewPostStrategy.class, new CreateNewPostStrategy(repository));
+        strategies.put(AddStrategy.class, new AddStrategy(repository));
         return new RequestHandler(strategies);
     }
 
@@ -29,13 +32,23 @@ public class RequestHandler {
             return strategies.get(RedirectPostsStrategy.class);
         }
         if ("/posts".equals(uri)) {
-            return strategies.get(AllPostsStrategy.class);
+            if ("GET".equals(request.getMethod())) {
+                return strategies.get(AllPostsStrategy.class);
+            } else if ("POST".equals(request.getMethod())) {
+                return strategies.get(AddStrategy.class);
+            }
         }
         if ("/error".equals(uri)) {
             return strategies.get(ErrorStrategy.class);
         }
         if (uri.matches("\\/posts\\/.*[0-9]")) {
+            if (request.getParameter("create") != null) {
+                return strategies.get(RedirectCreateStrategy.class);
+            }
             return strategies.get(PostStrategy.class);
+        }
+        if ("/posts/create".equals(uri)) {
+            return strategies.get(CreateNewPostStrategy.class);
         }
         return strategies.get(ErrorStrategy.class);
     }

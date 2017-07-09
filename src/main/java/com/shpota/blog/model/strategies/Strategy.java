@@ -12,7 +12,7 @@ public abstract class Strategy {
     final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
     final BlogRepository repository;
 
-    Strategy(BlogRepository repository) {
+    public Strategy(BlogRepository repository) {
         this.repository = repository;
     }
 
