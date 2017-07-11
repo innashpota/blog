@@ -24,6 +24,8 @@ public class RequestHandler {
         strategies.put(CreatePostStrategy.class, new CreatePostStrategy(repository));
         strategies.put(AddPostStrategy.class, new AddPostStrategy(repository));
         strategies.put(DeletePostStrategy.class, new DeletePostStrategy(repository));
+        strategies.put(EditPostStrategy.class, new EditPostStrategy(repository));
+        strategies.put(UpdatePostStrategy.class, new UpdatePostStrategy(repository));
         return new RequestHandler(strategies);
     }
 
@@ -53,6 +55,13 @@ public class RequestHandler {
         }
         if (uri.matches("\\/posts\\/.*[0-9]\\/delete")) {
             return strategies.get(DeletePostStrategy.class);
+        }
+        if (uri.matches("\\/posts\\/.*[0-9]\\/edit")) {
+            if ("GET".equals(request.getMethod())) {
+                return strategies.get(UpdatePostStrategy.class);
+            } else if ("POST".equals(request.getMethod())) {
+                return strategies.get(EditPostStrategy.class);
+            }
         }
         return strategies.get(ErrorStrategy.class);
     }

@@ -110,8 +110,9 @@ public class JdbcBlogRepository implements BlogRepository {
                      SQL_UPDATE_POST
              )) {
             updateStatement.setString(1, post.getTitle());
-            updateStatement.setObject(2, post.getPostedText());
+            updateStatement.setObject(2, post.getPostedDate());
             updateStatement.setString(3, post.getPostedText());
+            updateStatement.setInt(4, postId);
             updateStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException(e);
