@@ -16,8 +16,8 @@ public class PostStrategy extends Strategy {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-        String stringPostId = pathInfo.substring(1);
-        int postId = Integer.parseInt(stringPostId);
+        String postIdString = pathInfo.substring(1);
+        int postId = Integer.parseInt(postIdString);
         Post post = repository.getPost(postId);
         if (post != null) {
             request.setAttribute("post", post);
