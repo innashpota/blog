@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2 align="center">Edit post <c:out value="\"${post.title}\""/></h2>
-<form action="/posts/${post.postId}/edit" method="get">
+<form action="/posts/${post.postId}/edit" method="post">
     <h4>Title:</h4>
     <input type="text" name="title" value="${post.title}" border="1" cellspacing="0" cellpadding="2" style="width: 600px;"/>
     <h4>Context:</h4>
@@ -15,7 +15,7 @@
         <c:out value="${post.postedText}"/>
     </textarea>
     <br/>
-    <input type="submit" name="edit" value="Edit" align="center"/>
+    <input type="submit" name="save" value="Save" align="center"/>
 </form>
 </body>
 </html>

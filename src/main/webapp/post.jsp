@@ -14,7 +14,7 @@
 <form align="center" action="/posts/${post.postId}/delete" method="post">
     <input type="submit" name="delete" value="Delete"/>
 </form>
-<form align="center" action="/posts/${post.postId}/edit" method="post">
+<form align="center" action="/posts/${post.postId}/edit" method="get">
     <input type="submit" name="edit" value="Edit"/>
 </form>
 </body>
