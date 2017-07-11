@@ -40,16 +40,16 @@ public class BlogController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response, "doGet method has been called");
+        processRequest(request, response, "doGet");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response, "doPost method has been called");
+        processRequest(request, response, "doPost");
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response, String message) throws IOException, ServletException {
-        LOGGER.info(message);
+    private void processRequest(HttpServletRequest request, HttpServletResponse response, String method) throws IOException, ServletException {
+        LOGGER.info(method + "method has been called");
         Strategy strategy = requestHandler.getStrategy(request);
         strategy.handle(request, response);
     }

@@ -11,9 +11,11 @@
 <p>
     <c:out value="${post.postedText}"/>
 </p>
-<form align="center" action="/posts/" method="get">
+<form align="center" action="/posts/${post.postId}/delete" method="post">
+    <input type="submit" name="delete" value="Delete"/>
+</form>
+<form align="center" action="/posts/${post.postId}/edit" method="post">
     <input type="submit" name="edit" value="Edit"/>
-    <input type="submit" name="remove" value="Remove"/>
 </form>
 </body>
 </html>

@@ -23,6 +23,7 @@ public class RequestHandler {
         strategies.put(RedirectCreatePostStrategy.class, new RedirectCreatePostStrategy(repository));
         strategies.put(CreatePostStrategy.class, new CreatePostStrategy(repository));
         strategies.put(AddPostStrategy.class, new AddPostStrategy(repository));
+        strategies.put(DeletePostStrategy.class, new DeletePostStrategy(repository));
         return new RequestHandler(strategies);
     }
 
@@ -49,6 +50,9 @@ public class RequestHandler {
         }
         if ("/posts/create".equals(uri)) {
             return strategies.get(CreatePostStrategy.class);
+        }
+        if (uri.matches("\\/posts\\/.*[0-9]\\/delete")) {
+            return strategies.get(DeletePostStrategy.class);
         }
         return strategies.get(ErrorStrategy.class);
     }
