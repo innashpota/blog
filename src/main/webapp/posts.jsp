@@ -5,10 +5,11 @@
 <html>
 <head>
     <title>All posts</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<h2 align="center">Post from Postgresql Database</h2>
-<table border="1" cellspacing="0" cellpadding="2" align="center">
+<h2>Post from Postgresql Database</h2>
+<table>
     <tr>
         <td>Data post</td>
         <td>Title</td>
@@ -22,7 +23,7 @@
     </c:forEach>
 </table>
 <br/>
-<form align="center" action="/posts" method="get">
+<form action="/posts" method="get">
     <input type="submit" name="create" value="Create new post"/>
 </form>
 </body>
