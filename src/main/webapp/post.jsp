@@ -4,18 +4,25 @@
 <html>
 <head>
     <title>Post</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h2 align="center"><c:out value="${post.title}"/></h2>
-<h4 align="center"><c:out value="${formatter.format(post.postedDate)}"/></h4>
-<p>
+<h2>
+    <c:out value="${post.title}"/>
+</h2>
+<h4>
+    <c:out value="${formatter.format(post.postedDate)}"/>
+</h4>
+<p class="format_post">
     <c:out value="${post.postedText}"/>
 </p>
-<form align="center" action="/posts/${post.postId}/delete" method="post">
-    <input type="submit" name="delete" value="Delete"/>
-</form>
-<form align="center" action="/posts/${post.postId}/edit" method="get">
-    <input type="submit" name="edit" value="Edit"/>
-</form>
+<div class="max_width_100">
+    <form class="buttons_center" action="/posts/${post.postId}/delete" method="post">
+        <input type="submit" name="delete" value="Delete"/>
+    </form>
+    <form class="buttons_center" action="/posts/${post.postId}/edit" method="get">
+        <input type="submit" name="edit" value="Edit"/>
+    </form>
+</div>
 </body>
 </html>

@@ -1,0 +1,35 @@
+body {
+    background-color: white;
+    color: black;
+}
+
+h2, h4, .value_center {
+    text-align: center;
+}
+
+form {
+    text-align: center;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttons_center {
+    display: inline-block;
+}
+
+.max_width_100 {
+    max-width: 100px;
+}
+
+.max_width_400 {
+    max-width: 400px;
+}
+
+.format_post {
+    text-indent: 20px;
+    padding: 20px;
+    text-align: justify;
+}
