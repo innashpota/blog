@@ -3,21 +3,33 @@ body {
     color: black;
 }
 
-h1 {
+h2, h4, .value_center {
     text-align: center;
-}
-
-h2 {
-    text-align: center;
-}
-
-table, th, td {
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
-    float: inherit;
 }
 
 form {
     text-align: center;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttons_center {
+    display: inline-block;
+}
+
+.max_width_100 {
+    max-width: 100px;
+}
+
+.max_width_400 {
+    max-width: 400px;
+}
+
+.format_post {
+    text-indent: 20px;
+    padding: 20px;
+    text-align: justify;
 }

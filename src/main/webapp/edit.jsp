@@ -4,9 +4,10 @@
 <html>
 <head>
     <title>Edit</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h2 align="center">Edit post <c:out value="\"${post.title}\""/></h2>
+<h2>Edit post <c:out value="\"${post.title}\""/></h2>
 <form action="/posts/${post.postId}/edit" method="post">
     <h4>Title:</h4>
     <input type="text" name="title" value="${post.title}" border="1" cellspacing="0" cellpadding="2" style="width: 600px;"/>
@@ -15,7 +16,7 @@
         <c:out value="${post.postedText}"/>
     </textarea>
     <br/>
-    <input type="submit" name="save" value="Save" align="center"/>
+    <input class="value_center" type="submit" name="save" value="Save"/>
 </form>
 </body>
 </html>
