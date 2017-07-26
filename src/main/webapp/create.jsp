@@ -8,9 +8,9 @@
 <h2>Create new post</h2>
 <form action="/posts" method="post">
     <h4>Title:</h4>
-    <input type="text" name="title" border="1" cellspacing="0" cellpadding="2" style="width: 600px;"/>
+    <input class="text_title" type="text" name="title"/>
     <h4>Context:</h4>
-    <textarea name="context" border="1" cellspacing="0" cellpadding="2" style="width: 600px; height: 200px;">
+    <textarea class="text_title" name="context">
     </textarea>
     <br/>
     <br/>

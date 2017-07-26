@@ -14,15 +14,15 @@ public class DeletePostStrategy extends Strategy {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        deletePost(request);
+        int postId = extractId(request);
+        repository.deletePost(postId);
         response.sendRedirect("/posts");
     }
 
-    private void deletePost(HttpServletRequest request) {
+    private int extractId(HttpServletRequest request) {
         String uri = request.getRequestURI();
         String postIdString = uri.replace("/posts/", "")
                 .replace("/delete", "");
-        int postId = Integer.parseInt(postIdString);
-        repository.deletePost(postId);
+        return Integer.parseInt(postIdString);
     }
 }

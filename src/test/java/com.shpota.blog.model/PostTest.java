@@ -41,7 +41,7 @@ public class PostTest {
 
     @Test
     public void shouldSetTitle() throws Exception {
-        Post post = getPost();
+        Post post = aPost();
         String title = "Hello world!";
 
         post.setTitle(title);
@@ -51,7 +51,7 @@ public class PostTest {
 
     @Test
     public void shouldFailToSetTitle() throws Exception {
-        Post post = getPost();
+        Post post = aPost();
         String title = null;
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Title must not be empty.");
@@ -61,7 +61,7 @@ public class PostTest {
 
     @Test
     public void shouldSetText() throws Exception {
-        Post post = getPost();
+        Post post = aPost();
         String postedText = "Hello world!";
 
         post.setPostedText(postedText);
@@ -71,7 +71,7 @@ public class PostTest {
 
     @Test
     public void shouldFailToSetText() throws Exception {
-        Post post = getPost();
+        Post post = aPost();
         String postedText = null;
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Text must not be empty.");
@@ -79,7 +79,7 @@ public class PostTest {
         post.setPostedText(postedText);
     }
 
-    private Post getPost() {
+    private Post aPost() {
         return new Post(1, "Title", OffsetDateTime.now(), "Posted text");
     }
 }
