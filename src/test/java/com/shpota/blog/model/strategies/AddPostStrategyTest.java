@@ -14,7 +14,7 @@ import static org.mockito.Mockito.verify;
 
 public class AddPostStrategyTest {
     @Test
-    public void handle() throws Exception {
+    public void shouldHandle() throws Exception {
         BlogRepository repository = mock(BlogRepository.class);
         AddPostStrategy strategy = new AddPostStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);

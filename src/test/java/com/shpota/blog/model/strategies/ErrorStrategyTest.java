@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 
 public class ErrorStrategyTest {
     @Test
-    public void handle() throws Exception {
+    public void shouldHandle() throws Exception {
         BlogRepository repository = mock(BlogRepository.class);
         ErrorStrategy strategy = new ErrorStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);
