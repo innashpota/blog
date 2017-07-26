@@ -17,7 +17,7 @@ public class DeletePostStrategyTest {
         Strategy strategy = new DeletePostStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
-        int postId = 1;
+        int postId = 4;
         given(request.getRequestURI()).willReturn("/posts/" + postId + "/delete");
 
         strategy.handle(request, response);

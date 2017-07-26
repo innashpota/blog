@@ -15,12 +15,16 @@ public class EditPostStrategy extends Strategy {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uri = request.getRequestURI();
-        String postIdString = uri.replace("/posts/", "")
-                .replace("/edit", "");
-        int postId = Integer.parseInt(postIdString);
+        int postId = extractId(request);
         Post post = repository.getPost(postId);
         request.setAttribute("post", post);
         request.getRequestDispatcher("/edit.jsp").forward(request, response);
+    }
+
+    private int extractId(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        String postIdString = uri.replace("/posts/", "")
+                .replace("/edit", "");
+        return Integer.parseInt(postIdString);
     }
 }
