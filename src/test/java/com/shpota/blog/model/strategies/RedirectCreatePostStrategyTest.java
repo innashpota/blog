@@ -13,7 +13,7 @@ public class RedirectCreatePostStrategyTest {
     @Test
     public void shouldHandle() throws Exception {
         BlogRepository repository = mock(BlogRepository.class);
-        RedirectCreatePostStrategy strategy = new RedirectCreatePostStrategy(repository);
+        Strategy strategy = new RedirectCreatePostStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 

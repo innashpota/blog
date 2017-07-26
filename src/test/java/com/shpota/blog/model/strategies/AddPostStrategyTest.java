@@ -18,7 +18,7 @@ public class AddPostStrategyTest {
     @Test
     public void shouldHandle() throws Exception {
         BlogRepository repository = mock(BlogRepository.class);
-        AddPostStrategy strategy = new AddPostStrategy(repository);
+        Strategy strategy = new AddPostStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         String title = "Title";

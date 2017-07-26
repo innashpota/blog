@@ -20,7 +20,7 @@ public class AllPostsStrategyTest {
     @Test
     public void shouldHandle() throws Exception {
         BlogRepository repository = mock(BlogRepository.class);
-        AllPostsStrategy strategy = new AllPostsStrategy(repository);
+        Strategy strategy = new AllPostsStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         List<Post> posts = asList(

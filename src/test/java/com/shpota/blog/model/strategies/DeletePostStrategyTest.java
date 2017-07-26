@@ -14,7 +14,7 @@ public class DeletePostStrategyTest {
     @Test
     public void shouldHandle() throws Exception {
         BlogRepository repository = mock(BlogRepository.class);
-        DeletePostStrategy strategy = new DeletePostStrategy(repository);
+        Strategy strategy = new DeletePostStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         int postId = 1;

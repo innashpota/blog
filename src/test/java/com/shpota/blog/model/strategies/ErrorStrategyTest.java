@@ -15,7 +15,7 @@ public class ErrorStrategyTest {
     @Test
     public void shouldHandle() throws Exception {
         BlogRepository repository = mock(BlogRepository.class);
-        ErrorStrategy strategy = new ErrorStrategy(repository);
+        Strategy strategy = new ErrorStrategy(repository);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
