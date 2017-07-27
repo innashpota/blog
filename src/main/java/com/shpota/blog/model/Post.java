@@ -50,4 +50,26 @@ public class Post {
         Assert.notEmpty(postedText, "Text must not be empty.");
         this.postedText = postedText;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+
+        Post post = (Post) object;
+
+        if (postId != post.postId) return false;
+        if (!title.equals(post.title)) return false;
+        if (!postedDate.equals(post.postedDate)) return false;
+        return postedText.equals(post.postedText);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = postId;
+        result = 31 * result + title.hashCode();
+        result = 31 * result + postedDate.hashCode();
+        result = 31 * result + postedText.hashCode();
+        return result;
+    }
 }
