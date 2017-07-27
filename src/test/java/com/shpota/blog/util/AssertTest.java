@@ -4,9 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
-
 public class AssertTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
