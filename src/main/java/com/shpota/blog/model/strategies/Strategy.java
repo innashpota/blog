@@ -1,6 +1,7 @@
 package com.shpota.blog.model.strategies;
 
 import com.shpota.blog.model.BlogRepository;
+import com.shpota.blog.util.Assert;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ public abstract class Strategy {
     final BlogRepository repository;
 
     Strategy(BlogRepository repository) {
+        Assert.notNull(repository, "Repository must not be null.");
         this.repository = repository;
     }
 
