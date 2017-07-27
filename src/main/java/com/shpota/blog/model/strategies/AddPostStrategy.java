@@ -16,14 +16,10 @@ public class AddPostStrategy extends Strategy {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int newPostId = addPost(request);
-        response.sendRedirect("/posts/" + newPostId);
-    }
-
-    private int addPost(HttpServletRequest request) {
         String title = request.getParameter("title");
         String postedText = request.getParameter("context");
         Post post = new Post(title, OffsetDateTime.now(), postedText);
-        return repository.addPost(post);
+        int newPostId = repository.addPost(post);
+        response.sendRedirect("/posts/" + newPostId);
     }
 }
