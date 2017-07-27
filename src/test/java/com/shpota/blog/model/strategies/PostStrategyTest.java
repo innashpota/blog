@@ -7,7 +7,6 @@ import org.junit.Test;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.time.OffsetDateTime;
 
 import static com.shpota.blog.model.strategies.Strategy.DATE_FORMATTER;

@@ -29,11 +29,7 @@ public class AllPostsStrategyTest {
                 "into the lamp poles. An electric car driver can then just find a street lamp.";
         List<Post> posts = asList(
                 new Post(1, "Title_1", OffsetDateTime.now(), "Text_1"),
-                new Post(
-                        2,
-                        "Title_2",
-                        OffsetDateTime.now(),
-                        postedText)
+                new Post(2, "Title_2", OffsetDateTime.now(), postedText)
         );
         given(repository.getAllPost()).willReturn(posts);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
