@@ -20,12 +20,6 @@ public class RequestHandlerTest {
     public void shouldToGetStrategy(
             String uri, String method, String parameterValue, Class strategyClass
     ) throws Exception {
-        checkStrategy(uri, method, parameterValue, strategyClass);
-    }
-
-    private void checkStrategy(
-            String uri, String method, String parameterValue, Class strategyClass
-    ) throws IOException {
         BlogRepository repository = mock(BlogRepository.class);
         HttpServletRequest request = mock(HttpServletRequest.class);
         RequestHandler requestHandler = RequestHandler.construct(repository);
