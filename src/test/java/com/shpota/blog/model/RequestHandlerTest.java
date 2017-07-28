@@ -1,7 +1,10 @@
 package com.shpota.blog.model;
 
 import com.shpota.blog.model.strategies.*;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -10,53 +13,19 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
+@RunWith(JUnitParamsRunner.class)
 public class RequestHandlerTest {
     @Test
-    public void shouldToGetStrategyGivenRedirectAllPosts() throws Exception {
-        checkStrategy("/", "GET", null, RedirectAllPostsStrategy.class);
+    @Parameters
+    public void shouldToGetStrategy(
+            String uri, String method, String parameterValue, Class strategyClass
+    ) throws Exception {
+        checkStrategy(uri, method, parameterValue, strategyClass);
     }
 
-    @Test
-    public void shouldToGetStrategyGivenAllPostsStrategy() throws Exception {
-        checkStrategy("/posts", "GET", null, AllPostsStrategy.class);
-    }
-
-    @Test
-    public void shouldToGetStrategyGivenRedirectCreatePost() throws Exception {
-        checkStrategy("/posts", "GET", "Create", RedirectCreatePostStrategy.class);
-    }
-
-    @Test
-    public void shouldToGetStrategyGivenAddPost() throws Exception {
-        checkStrategy("/posts", "POST", null, AddPostStrategy.class);
-    }
-
-    @Test
-    public void shouldToGetStrategyGivenPost() throws Exception {
-        checkStrategy("/posts/4", "GET", null, PostStrategy.class);
-    }
-
-    @Test
-    public void shouldToGetStrategyGivenCreatePost() throws Exception {
-        checkStrategy("/posts/create", "GET", null, CreatePostStrategy.class);
-    }
-
-    @Test
-    public void shouldToGetStrategyGivenDeletePost() throws Exception {
-        checkStrategy("/posts/4/delete", "GET", null, DeletePostStrategy.class);
-    }
-
-    @Test
-    public void shouldToGetStrategyGivenEditPost() throws Exception {
-        checkStrategy("/posts/4/edit", "GET", null, EditPostStrategy.class);
-    }
-
-    @Test
-    public void shouldToGetStrategyGivenSavePost() throws Exception {
-        checkStrategy("/posts/4/edit", "POST", null, SavePostStrategy.class);
-    }
-
-    private void checkStrategy(String uri, String method, String parameterValue, Class strategyClass) throws IOException {
+    private void checkStrategy(
+            String uri, String method, String parameterValue, Class strategyClass
+    ) throws IOException {
         BlogRepository repository = mock(BlogRepository.class);
         HttpServletRequest request = mock(HttpServletRequest.class);
         RequestHandler requestHandler = RequestHandler.construct(repository);
@@ -67,5 +36,19 @@ public class RequestHandlerTest {
         Strategy strategy = requestHandler.getStrategy(request);
 
         assertEquals(strategyClass, strategy.getClass());
+    }
+
+    private Object[] parametersForShouldToGetStrategy() {
+        return new Object[]{
+                new Object[]{"/", "GET", null, RedirectAllPostsStrategy.class},
+                new Object[]{"/posts", "GET", null, AllPostsStrategy.class},
+                new Object[]{"/posts", "GET", "Create", RedirectCreatePostStrategy.class},
+                new Object[]{"/posts", "POST", null, AddPostStrategy.class},
+                new Object[]{"/posts/4", "GET", null, PostStrategy.class},
+                new Object[]{"/posts/create", "GET", null, CreatePostStrategy.class},
+                new Object[]{"/posts/4/delete", "GET", null, DeletePostStrategy.class},
+                new Object[]{"/posts/4/edit", "GET", null, EditPostStrategy.class},
+                new Object[]{"/posts/4/edit", "POST", null, SavePostStrategy.class}
+        };
     }
 }

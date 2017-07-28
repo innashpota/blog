@@ -46,6 +46,13 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>1.0.5</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
