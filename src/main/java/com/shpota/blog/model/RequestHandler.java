@@ -44,9 +44,6 @@ public class RequestHandler {
                 return strategies.get(AddPostStrategy.class);
             }
         }
-        if ("/error".equals(uri)) {
-            return strategies.get(ErrorStrategy.class);
-        }
         if (uri.matches("\\/posts\\/.*[0-9]")) {
             return strategies.get(PostStrategy.class);
         }

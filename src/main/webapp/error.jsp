@@ -7,7 +7,14 @@
 </head>
 <body>
 <h1>Page Not Found</h1>
-<h3><c:out value="${message}"/></h3>
+<h3>
+    <c:if test="${not empty message}">
+        <c:out value="${message}"/>
+    </c:if>
+    <c:if test="${empty message}">
+        <c:out value="Internal error occurred. Please contact administrator."/>
+    </c:if>
+</h3>
 <a href="" onclick="history.back()">Back to Previous Page</a>
 </body>
 </html>
