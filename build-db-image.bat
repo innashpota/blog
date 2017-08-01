@@ -1,1 +1,1 @@
-docker build -t blog-db .
+docker build -t blog:blog-db -f Dockerfile.db .
