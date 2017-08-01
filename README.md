@@ -12,15 +12,35 @@
 
 ## Збірка і запуск проекту
 
-1. Зібрати docker image для бази даних **docker build -t blog:blog-db -f Dockerfile.db .**.
+1. Зібрати docker image для бази даних 
 
-2. Запустити базу даних **docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTGRES_DB=blog --name blog_db blog:blog-db**.
+```
+docker build -t blog:blog-db -f Dockerfile.db .
+```
 
-3. Зібрати war-архів проекту **maven clean package**.
+2. Запустити базу даних 
 
-4. Зібрати docker image для сервера **docker build -t blog:blog-web -f Dockerfile.web .**.
+```
+docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTGRES_DB=blog --name blog_db blog:blog-db
+```
 
-5. Запустити сервер **docker run -it --rm -p 8080:8080 --name blog-web --link blog-db  blog:blog-web**.
+3. Зібрати war-архів проекту 
+
+```
+maven clean package
+```
+
+4. Зібрати docker image для сервера 
+
+```
+docker build -t blog:blog-web -f Dockerfile.web .
+```
+
+5. Запустити сервер 
+
+```
+docker run -it --rm -p 8080:8080 --name blog-web --link blog-db  blog:blog-web
+```
 
 ## Інтерфейс
 
