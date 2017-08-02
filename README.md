@@ -11,7 +11,7 @@
 
 ## Збірка і запуск проекту
 
-Для ОС UNIX/Linux в усіх командах, які починаються з ``docker``, необхідно написати ``sudo``.
+Для запуску команд ``docker`` в ОС UNIX/Linux вам може знадобитись ``sudo``.
 
 - Зібрати docker image для бази даних 
 
@@ -31,13 +31,13 @@ docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTG
 mvn clean package
 ```
 
-- Зібрати docker image для сервера 
+- Зібрати docker image для веб сервера 
 
 ```
 docker build -t blog:blog-web -f Dockerfile.web .
 ```
 
-- Запустити сервер 
+- Запустити веб сервер з додатком 
 
 ```
 docker run -it --rm -p 8080:8080 --name blog_web --link blog_db  blog:blog-web
