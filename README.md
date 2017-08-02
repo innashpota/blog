@@ -3,45 +3,51 @@
 
 ##Веб-додаток для додавання, видалення та редагування статей
 
-Додаток базується на JDBC, Servlets та LOG4J як система логування.
+Додаток базується на Servlets, JSP, JDBC, HTML + CSS та LOG4J як система логування.
 
 ## Cистемні вимоги
 
-Для збірки і запуску проекту необхідно JDK 8, Maven та Docker.
+Для збірки і запуску проекту необхідно:
+
+- JDK 1.8 або вище;
+- Maven 3.0 або вище;
+- Docker.
 
 ## Збірка і запуск проекту
 
 Для запуску команд ``docker`` в ОС UNIX/Linux вам може знадобитись ``sudo``.
 
-- Зібрати docker image для бази даних 
+1. Зібрати docker image для бази даних 
+    
+    ```
+    docker build -t blog:blog-db -f Dockerfile.db .
+    ```
 
-```
-docker build -t blog:blog-db -f Dockerfile.db .
-```
+2. Запустити базу даних 
 
-- Запустити базу даних 
+    ```
+    docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTGRES_DB=blog --name blog_db blog:blog-db
+    ```
+    
+    Наступні команди необхідно запустити в окремій сесії терміналу.
 
-```
-docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTGRES_DB=blog --name blog_db blog:blog-db
-```
+3. Зібрати war-архів проекту 
 
-- Зібрати war-архів проекту 
+    ```
+    mvn clean package
+    ```
 
-```
-mvn clean package
-```
+4. Зібрати docker image для веб сервера 
 
-- Зібрати docker image для веб сервера 
+    ```
+    docker build -t blog:blog-web -f Dockerfile.web .
+    ```
 
-```
-docker build -t blog:blog-web -f Dockerfile.web .
-```
+5. Запустити веб сервер з додатком 
 
-- Запустити веб сервер з додатком 
-
-```
-docker run -it --rm -p 8080:8080 --name blog_web --link blog_db  blog:blog-web
-```
+    ```
+    docker run -it --rm -p 8080:8080 --name blog_web --link blog_db  blog:blog-web
+    ```
 
 ## Інтерфейс
 
