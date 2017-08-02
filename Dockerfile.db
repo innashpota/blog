@@ -1,0 +1,5 @@
+FROM library/postgres:9.2.19
+
+MAINTAINER "Inna Shpota <shpota_inna@ukr.net>"
+
+ADD docker/create_tables.sql /docker-entrypoint-initdb.d/

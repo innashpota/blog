@@ -1,11 +1,7 @@
 *.class
-*.jar
 *.war
 *.ear
 
 blog.iml
 .idea/
-build/
 target/
-
-/out/

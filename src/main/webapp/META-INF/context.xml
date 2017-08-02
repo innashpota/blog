@@ -2,7 +2,7 @@
 <Context>
     <Resource name="jdbc/postgres" auth="Container"
               type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
-              url="jdbc:postgresql://localhost:5432/blog"
+              url="jdbc:postgresql://blog_db:5432/blog"
               username="blog" password="blog" maxActive="100" maxIdle="10"
               maxWait="-1"/>
 </Context>

@@ -8,9 +8,9 @@
 <h2>Create new post</h2>
 <form action="/posts" method="post">
     <h4>Title:</h4>
-    <input class="text_title" type="text" name="title"/>
+    <input class="text_title" type="text" name="title" required/>
     <h4>Context:</h4>
-    <textarea class="text_title" name="context">
+    <textarea class="text_title" name="context" required>
     </textarea>
     <br/>
     <br/>
