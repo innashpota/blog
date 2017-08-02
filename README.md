@@ -3,8 +3,7 @@
 
 ##Веб-додаток для додавання, видалення та редагування статей
 
-Додаток базується на ... та LOG4J як 
-система логування.
+Додаток базується на JDBC, Servlets та LOG4J як система логування.
 
 ## Cистемні вимоги
 
@@ -12,34 +11,36 @@
 
 ## Збірка і запуск проекту
 
-1. Зібрати docker image для бази даних 
+Для ОС UNIX/Linux в усіх командах, які починаються з ``docker``, необхідно написати ``sudo``.
+
+- Зібрати docker image для бази даних 
 
 ```
 docker build -t blog:blog-db -f Dockerfile.db .
 ```
 
-2. Запустити базу даних 
+- Запустити базу даних 
 
 ```
 docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTGRES_DB=blog --name blog_db blog:blog-db
 ```
 
-3. Зібрати war-архів проекту 
+- Зібрати war-архів проекту 
 
 ```
-maven clean package
+mvn clean package
 ```
 
-4. Зібрати docker image для сервера 
+- Зібрати docker image для сервера 
 
 ```
 docker build -t blog:blog-web -f Dockerfile.web .
 ```
 
-5. Запустити сервер 
+- Запустити сервер 
 
 ```
-docker run -it --rm -p 8080:8080 --name blog-web --link blog-db  blog:blog-web
+docker run -it --rm -p 8080:8080 --name blog_web --link blog_db  blog:blog-web
 ```
 
 ## Інтерфейс
