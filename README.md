@@ -1,7 +1,7 @@
 Blog 
 =================
 
-##This is a web application for adding, deleting, and editing posts
+##Web app that allows to write articles in blog.
 
 The application is based on Servlets, JSP, JDBC, HTML + CSS and LOG4J as a logging system.
 
@@ -15,11 +15,11 @@ The application requires:
 
 ## How to run
 
-To run commands ``docker`` in the UNIX / Linux operating system you may need to ``sudo``.
+For running ``docker`` command in UNIX / Linux operating system you may need ``sudo``.
 
 Perform the next commands from the root folder of the project step by step:
 
-1. Assemble docker image for database 
+1. Build docker image for database 
     
     ```
     docker build -t blog:blog-db -f Dockerfile.db .
@@ -31,15 +31,15 @@ Perform the next commands from the root folder of the project step by step:
     docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTGRES_DB=blog --name blog_db blog:blog-db
     ```
     
-    The following commands must be run in a separate session of the terminal.
+    The following commands must be performed in separate terminal session.
 
-3. Collect the war-archive of the project 
+3. Build war-archive with the app 
 
     ```
     mvn clean package
     ```
 
-4. Collect docker image for web server
+4. Build web-server image
 
     ```
     docker build -t blog:blog-web -f Dockerfile.web .
@@ -51,20 +51,20 @@ Perform the next commands from the root folder of the project step by step:
     docker run -it --rm -p 8080:8080 --name blog_web --link blog_db  blog:blog-web
     ```
 
-## The interface
+## Interface
 
-The main page of the application is as follows
+Main page of the application
 
 ![main-window](./samples/main-page.png)
 
-The post display page
+Post page
 
 ![post-page](./samples/post-page.png)
 
-create a new post
+Create a new post
 
 ![create-post-page](./samples/create-post-page.png)
 
-and editing
+Edit page
 
 ![edit-post-page](./samples/edit-post-page.png)
