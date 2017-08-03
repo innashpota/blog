@@ -1,7 +1,7 @@
 Blog 
 =================
 
-##Web app that allows to write articles in blog.
+##Web application that allows to write articles in blog.
 
 The application is based on Servlets, JSP, JDBC, HTML + CSS and LOG4J as a logging system.
 
@@ -33,7 +33,7 @@ Perform the next commands from the root folder of the project step by step:
     
     The following commands must be performed in separate terminal session.
 
-3. Build war-archive with the app 
+3. Build war-archive with the application 
 
     ```
     mvn clean package
