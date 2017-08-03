@@ -1,68 +1,70 @@
-# Blog 
-***
+Blog 
+=================
 
-##Веб-додаток для додавання, видалення та редагування статей
+##This is a web application for adding, deleting, and editing posts
 
-Додаток базується на Servlets, JSP, JDBC, HTML + CSS та LOG4J як система логування.
+The application is based on Servlets, JSP, JDBC, HTML + CSS and LOG4J as a logging system.
 
-## Cистемні вимоги
+## Environment Setup
 
-Для збірки і запуску проекту необхідно:
+The application requires:
 
-- JDK 1.8 або вище;
-- Maven 3.3.9 або вище;
+- JDK 1.8 or above;
+- Maven 3.3.9 or above;
 - Docker 17.05.0.
 
-## Збірка і запуск проекту
+## How to run
 
-Для запуску команд ``docker`` в ОС UNIX/Linux вам може знадобитись ``sudo``.
+To run commands ``docker`` in the UNIX / Linux operating system you may need to ``sudo``.
 
-1. Зібрати docker image для бази даних 
+Perform the next commands from the root folder of the project step by step:
+
+1. Assemble docker image for database 
     
     ```
     docker build -t blog:blog-db -f Dockerfile.db .
     ```
 
-2. Запустити базу даних 
+2. Run the database 
 
     ```
     docker run -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -e POSTGRES_DB=blog --name blog_db blog:blog-db
     ```
     
-    Наступні команди необхідно запустити в окремій сесії терміналу.
+    The following commands must be run in a separate session of the terminal.
 
-3. Зібрати war-архів проекту 
+3. Collect the war-archive of the project 
 
     ```
     mvn clean package
     ```
 
-4. Зібрати docker image для веб сервера 
+4. Collect docker image for web server
 
     ```
     docker build -t blog:blog-web -f Dockerfile.web .
     ```
 
-5. Запустити веб сервер з додатком 
+5. Run the web server with the application 
 
     ```
     docker run -it --rm -p 8080:8080 --name blog_web --link blog_db  blog:blog-web
     ```
 
-## Інтерфейс
+## The interface
 
-Головна сторінка додатку виглядає наступним чином
+The main page of the application is as follows
 
 ![main-window](./samples/main-page.png)
 
-Сторінка відображення посту
+The post display page
 
 ![post-page](./samples/post-page.png)
 
-створення нового посту
+create a new post
 
 ![create-post-page](./samples/create-post-page.png)
 
-і редагування
+and editing
 
 ![edit-post-page](./samples/edit-post-page.png)
