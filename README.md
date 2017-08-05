@@ -4,6 +4,7 @@ Blog
 ##Web application that allows to write articles in blog.
 
 The application is based on Servlets, JSP, JDBC, HTML + CSS and LOG4J as a logging system.
+The code is covered with unit tests using JUnit and Mockito.
 
 ## Environment Setup
 
